@@ -23,6 +23,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 const corsOptions = {
   origin: 'https://findyourjobb.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 };
 app.use(cors(corsOptions));
