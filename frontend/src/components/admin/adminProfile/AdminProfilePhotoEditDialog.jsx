@@ -11,7 +11,6 @@ import { Label } from '../../ui/label';
 import { Loader2 } from 'lucide-react';
 
 const AdminProfilePhotoEditDialog = ({ open, setOpen }) => {
-
     const [loading, setLoading] = useState(false);
     const [photo, setPhoto] = useState(null);
 
@@ -24,7 +23,6 @@ const AdminProfilePhotoEditDialog = ({ open, setOpen }) => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
         if (!photo) {
             toast.error('Please select a photo');
             return;
@@ -55,20 +53,30 @@ const AdminProfilePhotoEditDialog = ({ open, setOpen }) => {
 
     return (
         <Dialog open={open} onOpenChange={() => setOpen(false)}>
-            <DialogContent className="md:max-w-xl rounded-lg" onInteractOutside={(e) => e.preventDefault()}>
+            <DialogContent
+                className="md:max-w-xl rounded-lg bg-white dark:bg-zinc-950 dark:border-white text-gray-900 dark:text-gray-100"
+                onInteractOutside={(e) => e.preventDefault()}
+            >
                 <DialogHeader>
                     <DialogTitle className='sm:text-lg text-base'>Update Profile Photo</DialogTitle>
-                    <DialogDescription className='sm:text-sm text-xs'>
+                    <DialogDescription className='sm:text-sm text-xs text-gray-600 dark:text-gray-400'>
                         Make changes to your profile photo. Click 'Update' button when you're done.
                     </DialogDescription>
                 </DialogHeader>
 
-                <form onSubmit={submitHandler} onKeyDown={(e) => { if (e.key === 'Enter') { submitHandler(e); }}}>
+                <form onSubmit={submitHandler} onKeyDown={(e) => { if (e.key === 'Enter') submitHandler(e); }}>
                     <div className="flex flex-col gap-1">
                         <Label htmlFor='profilePhoto' className='font-medium sm:text-base text-sm'>Profile Photo :</Label>
                         <div>
-                            <Input type='file' accept='image/*' id='profilePhoto' name='profilePhoto' onChange={handleFileChange} />
-                            <p className="text-xs text-gray-400 pl-2 mt-1">
+                            <Input
+                                type='file'
+                                accept='image/*'
+                                id='profilePhoto'
+                                name='profilePhoto'
+                                onChange={handleFileChange}
+                                className='bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100'
+                            />
+                            <p className="text-xs text-gray-400 dark:text-gray-400 pl-2 mt-1">
                                 *Upload only .jpg/.jpeg/.png file*
                             </p>
                         </div>
@@ -76,16 +84,27 @@ const AdminProfilePhotoEditDialog = ({ open, setOpen }) => {
                         <DialogFooter>
                             <div className='flex flex-col sm:flex-row md:justify-end gap-2 my-5 w-full'>
                                 <DialogClose asChild>
-                                    <Button type='button' variant='outline' className='border-gray-400 w-full sm:w-1/2 md:w-1/3 lg:w-1/6 order-last sm:order-first'>Cancel</Button>
+                                    <Button
+                                        type='button'
+                                        variant='outline'
+                                        className='border-gray-400 dark:border-gray-600 w-full sm:w-1/2 md:w-1/3 lg:w-1/6 order-last sm:order-first'
+                                    >
+                                        Cancel
+                                    </Button>
                                 </DialogClose>
 
-                                {
-                                    loading ? (
-                                        <Button className='w-full sm:w-1/2 md:w-1/3 lg:w-1/6 bg-purple-800' disabled={loading}><Loader2 className='h-4 w-4 animate-spin' />wait</Button>
-                                    ) : (
-                                        <Button type='submit' className='w-full sm:w-1/2 md:w-1/3 lg:w-1/6 bg-purple-800 hover:bg-purple-900'>Update</Button>
-                                    )
-                                }
+                                {loading ? (
+                                    <Button className='w-full sm:w-1/2 md:w-1/3 lg:w-1/6 bg-purple-800 dark:bg-purple-900 dark:text-white' disabled>
+                                        <Loader2 className='h-4 w-4 animate-spin' /> wait
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        type='submit'
+                                        className='w-full sm:w-1/2 md:w-1/3 lg:w-1/6 bg-purple-800 dark:bg-purple-900 dark:text-white hover:bg-purple-900 dark:hover:bg-purple-950'
+                                    >
+                                        Update
+                                    </Button>
+                                )}
                             </div>
                         </DialogFooter>
                     </div>

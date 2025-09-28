@@ -55,14 +55,14 @@ const FilterCard = () => {
         <RadioGroup value={selectedValue} onValueChange={changeHandler}>
             <div className="flex items-center space-x-2 my-3">
                 <RadioGroupItem value="" id="allJobs" />
-                <Label htmlFor="allJobs" className="cursor-pointer">
+                <Label htmlFor="allJobs" className="cursor-pointer text-gray-900 dark:text-gray-100">
                     All Jobs
                 </Label>
             </div>
 
             {filterData.map((filter, index) => (
                 <div key={index}>
-                    <h1 className="text-lg font-semibold mt-1 mb-2 text-purple-900">
+                    <h1 className="text-lg font-semibold mt-1 mb-2 text-purple-900 dark:text-purple-300">
                         {filter.filterType}
                     </h1>
                     {filter.dataArray.map((data, idx) => {
@@ -70,7 +70,7 @@ const FilterCard = () => {
                         return (
                             <div className="flex items-center space-x-2 mb-3" key={dataId}>
                                 <RadioGroupItem value={data} id={dataId} />
-                                <Label htmlFor={dataId} className="cursor-pointer">
+                                <Label htmlFor={dataId} className="cursor-pointer text-gray-900 dark:text-gray-100">
                                     {data}
                                 </Label>
                             </div>
@@ -81,7 +81,7 @@ const FilterCard = () => {
 
             {/* Experience Range Input */}
             <div>
-                <h1 className="text-lg font-semibold mt-4 mb-2 text-purple-900">
+                <h1 className="text-lg font-semibold mt-4 mb-2 text-purple-900 dark:text-purple-300">
                     Experience (Years)
                 </h1>
                 <div className="flex items-center space-x-2">
@@ -91,9 +91,9 @@ const FilterCard = () => {
                         max="20"
                         value={experienceRange}
                         onChange={(e) => setExperienceRange(e.target.value)}
-                        className="w-3/4 range-purple-200"
+                        className="w-3/4 accent-purple-600 dark:accent-purple-400"
                     />
-                    <span className="text-xl font-medium text-purple-900">{experienceRange}</span>
+                    <span className="text-xl font-medium text-purple-900 dark:text-purple-300">{experienceRange}</span>
                 </div>
             </div>
         </RadioGroup>

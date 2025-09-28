@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 const ChangePassword = () => {
 
     const { user } = useSelector(store => store.auth);
-
     const navigate = useNavigate();
 
     const [input, setInput] = useState({
@@ -60,33 +59,33 @@ const ChangePassword = () => {
         }
     };
 
-    useEffect(()=>{
-        if(!user){
+    useEffect(() => {
+        if (!user) {
             navigate('/');
         }
-    },[]);
+    }, []);
 
     return (
         <>
-            <main className='flex flex-col min-h-screen'>
+            <main className='flex flex-col min-h-screen dark:bg-zinc-900'>
                 <nav>
                     <Navbar />
                 </nav>
 
                 <section className='flex-1'>
-                    <div className='max-w-2xl md:mx-auto mx-2 bg-white border border-purple-300 rounded-xl my-10 sm:p-8 px-5 py-3'>
+                    <div className='max-w-2xl md:mx-auto mx-2 bg-white dark:bg-gray-900 border border-purple-300 dark:border-purple-700 rounded-xl shadow-md shadow-purple-900/40 my-10 sm:p-8 px-5 py-3'>
                         <div>
-                            <h1 className="text-purple-900 font-semibold text-center underline underline-offset-4 text-lg sm:text-xl">
+                            <h1 className="text-purple-900 dark:text-purple-400 font-semibold text-center underline underline-offset-4 text-lg sm:text-xl">
                                 Change Password
                             </h1>
-                            <p className="text-xs sm:text-sm text-muted-foreground text-center mt-1">
+                            <p className="text-xs sm:text-sm text-muted-foreground dark:text-gray-300 text-center mt-1">
                                 Enter your current password and new password to change your password.
                             </p>
                         </div>
 
                         <form onSubmit={submitHandler} className="pt-5">
                             <div className="flex flex-col items-start gap-1">
-                                <Label htmlFor="currentPassword" className="font-medium text-sm sm:text-base">
+                                <Label htmlFor="currentPassword" className="font-medium text-sm sm:text-base text-gray-900 dark:text-gray-200">
                                     Current Password<span className='text-red-600'>*</span>
                                 </Label>
                                 <Input
@@ -94,12 +93,13 @@ const ChangePassword = () => {
                                     id="currentPassword"
                                     name="currentPassword"
                                     onChange={handleInput}
-                                    className="w-full placeholder-"
+                                    className="w-full dark:bg-zinc-700 dark:border-zinc-600 dark:text-white"
                                     placeholder="Enter your current password"
                                 />
                             </div>
+
                             <div className="flex flex-col items-start gap-1 my-4">
-                                <Label htmlFor="newPassword" className="font-medium text-sm sm:text-base">
+                                <Label htmlFor="newPassword" className="font-medium text-sm sm:text-base text-gray-900 dark:text-gray-200">
                                     New Password<span className='text-red-600'>*</span>
                                 </Label>
                                 <Input
@@ -107,12 +107,13 @@ const ChangePassword = () => {
                                     id="newPassword"
                                     name="newPassword"
                                     onChange={handleInput}
-                                    className="w-full"
+                                    className="w-full dark:bg-zinc-700 dark:border-zinc-600 dark:text-white"
                                     placeholder="Enter your new password"
                                 />
                             </div>
+
                             <div className="flex flex-col items-start gap-1">
-                                <Label htmlFor="confirmNewPassword" className="font-medium text-sm sm:text-base">
+                                <Label htmlFor="confirmNewPassword" className="font-medium text-sm sm:text-base text-gray-900 dark:text-gray-200">
                                     Confirm New Password<span className='text-red-600'>*</span>
                                 </Label>
                                 <div className="flex items-center w-full">
@@ -121,11 +122,11 @@ const ChangePassword = () => {
                                         id="confirmNewPassword"
                                         name="confirmNewPassword"
                                         onChange={handleInput}
-                                        className="w-full"
+                                        className="w-full dark:bg-zinc-700 dark:border-zinc-600 dark:text-white"
                                         placeholder="Confirm your new password"
                                     />
                                     <span
-                                        className="-ml-7 cursor-pointer text-purple-800"
+                                        className="-ml-7 cursor-pointer text-purple-800 dark:text-white"
                                         onClick={toggleShowPassword}
                                     >
                                         {showPassword ? <EyeOff className="w-5" /> : <Eye className="w-5" />}
@@ -134,10 +135,10 @@ const ChangePassword = () => {
                             </div>
 
                             <div className="flex items-center sm:justify-end gap-2 mt-8">
-                                <Button type="button" onClick={() => navigate(-1)} variant="outline" className="w-full sm:w-1/6 border-gray-400">
+                                <Button type="button" onClick={() => navigate(-1)} variant="outline" className="w-full sm:w-1/6 border-gray-400 dark:border-zinc-600 dark:text-gray-200">
                                     Cancel
                                 </Button>
-                                <Button type="submit" className="w-full bg-purple-800 hover:bg-purple-900 sm:w-1/6" disabled={loading}>
+                                <Button type="submit" className="w-full bg-purple-800 hover:bg-purple-900 sm:w-1/6 dark:text-white" disabled={loading}>
                                     {loading ? (
                                         <span className="flex gap-2 items-center">
                                             <Loader2 className="animate-spin" />
@@ -160,4 +161,4 @@ const ChangePassword = () => {
     )
 }
 
-export default ChangePassword
+export default ChangePassword;

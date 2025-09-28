@@ -24,31 +24,46 @@ const AdminJobs = () => {
 
     return (
         <>
-            <main className='flex flex-col min-h-screen'>
+            <main className="flex flex-col min-h-screen">
                 <nav>
                     <Navbar />
                 </nav>
 
-                <section className='flex-1'>
-                    <div className='max-w-7xl md:mx-auto mx-2 my-10 p-5 rounded-2xl bg-white border border-purple-900 shadow-md shadow-purple-950 flex flex-col gap-5'>
+                <section className="flex-1">
+                    <div className="max-w-7xl md:mx-auto mx-2 my-10 p-5 rounded-2xl 
+                        bg-white border border-purple-900 shadow-md shadow-purple-950 
+                        dark:bg-zinc-950 dark:border-gray-700 dark:shadow-purple-700 
+                        flex flex-col gap-5"
+                    >
                         <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 md:my-3 md:px-10">
-                            <Input type='search' onChange={(e) => setInput(e.target.value)} className='w-full md:w-1/3 lg:1/2 border-gray-400 order-last md:order-first' placeholder='Filter by name, designation or location' />
-                            <div className='w-full h-[1px] bg-purple-950 opacity-40 order-2 md:hidden block mb-5'></div>
-                            <Button onClick={() => navigate('/admin/jobs/create')} className='w-full md:w-1/6 bg-purple-900 hover:bg-purple-950 md:order-last'>Post New Job</Button>
+                            <Input
+                                type="search"
+                                onChange={(e) => setInput(e.target.value)}
+                                className="w-full md:w-1/3 lg:1/2 border-gray-400 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                                placeholder="Filter by name, designation or location"
+                            />
+                            <div className="w-full h-[1px] bg-purple-950 opacity-40 dark:bg-gray-600 order-2 md:hidden block mb-5"></div>
+                            <Button
+                                onClick={() => navigate('/admin/jobs/create')}
+                                className="w-full md:w-1/6 bg-purple-900 hover:bg-purple-950 text-white dark:bg-purple-800 dark:hover:bg-purple-900"
+                            >
+                                Post New Job
+                            </Button>
                         </div>
 
-                        <div className='w-full bg-purple-200 rounded-2xl p-5'>
-                            <h1 className='text-center text-xl font-semibold text-purple-900 underline mb-5'>Posted Jobs</h1>
+                        <div className="w-full bg-purple-200 dark:bg-gray-800 rounded-2xl p-5 transition-colors duration-300">
+                            <h1 className="text-center text-xl font-semibold text-purple-900 underline mb-5 dark:text-purple-400">
+                                Posted Jobs
+                            </h1>
 
                             {/* A list of Jobs as Table posted by Admin */}
-                            <AdminJobsTable/>
-                            
+                            <AdminJobsTable />
                         </div>
                     </div>
                 </section>
 
                 <footer>
-                    <Footer/>
+                    <Footer />
                 </footer>
             </main>
         </>

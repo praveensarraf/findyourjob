@@ -14,7 +14,6 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router'
 
 const ProfileEdit = () => {
-
     const [loading, setLoading] = useState(false);
     const { user } = useSelector(store => store.auth);
 
@@ -43,7 +42,6 @@ const ProfileEdit = () => {
         e.preventDefault();
 
         const formData = new FormData();
-
         formData.append('fullName', input.fullName);
         formData.append('email', input.email);
         formData.append('phoneNumber', input.phoneNumber);
@@ -85,24 +83,32 @@ const ProfileEdit = () => {
 
     return (
         <>
-            <main className='flex flex-col min-h-screen'>
+            <main className="flex flex-col min-h-screen">
                 <nav>
                     <Navbar />
                 </nav>
 
-                <section className='flex-1'>
-                    <div className='max-w-4xl md:mx-auto mx-2 bg-white border border-purple-300 rounded-xl my-5 sm:p-8 px-5 py-3'>
+                <section className="flex-1">
+                    <div className="max-w-4xl md:mx-auto mx-2 
+                        bg-white dark:bg-zinc-950 
+                        border border-purple-300 dark:border-purple-800 
+                        rounded-xl my-5 sm:p-8 px-5 py-3">
+                        
                         <div>
-                            <h1 className="text-purple-900 font-semibold text-center underline underline-offset-4 text-lg sm:text-xl">
+                            <h1 className="text-purple-900 dark:text-purple-200 font-semibold text-center underline underline-offset-4 text-lg sm:text-xl">
                                 Update Profile
                             </h1>
-                            <p className="text-xs sm:text-sm text-muted-foreground text-center mt-1">
+                            <p className="text-xs sm:text-sm text-muted-foreground dark:text-gray-400 text-center mt-1">
                                 Make changes to your profile here. Click 'Update' button when you're done.
                             </p>
                         </div>
 
-                        <form onSubmit={submitHandler} onKeyDown={(e) => { if (e.key === 'Enter') { submitHandler(e); } }} className="my-8">
-                            <div className="grid gap-4">
+                        <form
+                            onSubmit={submitHandler}
+                            onKeyDown={(e) => { if (e.key === 'Enter') { submitHandler(e); } }}
+                            className="my-8"
+                        >
+                            <div className="grid gap-4 text-gray-900 dark:text-gray-200">
                                 <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-0 sm:gap-4">
                                     <Label htmlFor="fullName" className="font-medium text-sm sm:text-base">Full Name:</Label>
                                     <Input
@@ -111,7 +117,7 @@ const ProfileEdit = () => {
                                         name="fullName"
                                         value={input.fullName}
                                         onChange={changeEventHandler}
-                                        className="col-span-3 w-full"
+                                        className="col-span-3 w-full bg-white dark:bg-[#2a1f3d] dark:text-gray-200"
                                         placeholder="Enter your Full Name"
                                     />
                                 </div>
@@ -124,7 +130,7 @@ const ProfileEdit = () => {
                                         name="email"
                                         value={input.email}
                                         onChange={changeEventHandler}
-                                        className="col-span-3 w-full"
+                                        className="col-span-3 w-full bg-white dark:bg-[#2a1f3d] dark:text-gray-200"
                                         placeholder="Enter your email"
                                     />
                                 </div>
@@ -137,7 +143,7 @@ const ProfileEdit = () => {
                                         name="phoneNumber"
                                         value={input.phoneNumber}
                                         onChange={changeEventHandler}
-                                        className="col-span-3 w-full"
+                                        className="col-span-3 w-full bg-white dark:bg-[#2a1f3d] dark:text-gray-200"
                                         placeholder="Enter your phone number"
                                     />
                                 </div>
@@ -150,7 +156,7 @@ const ProfileEdit = () => {
                                         name="bio"
                                         value={input.bio}
                                         onChange={changeEventHandler}
-                                        className="col-span-3 w-full focus-visible:ring-purple-900"
+                                        className="col-span-3 w-full bg-white dark:bg-[#2a1f3d] dark:text-gray-200 focus-visible:ring-purple-900"
                                         placeholder="Description about yourself"
                                     />
                                 </div>
@@ -164,10 +170,10 @@ const ProfileEdit = () => {
                                             name="skills"
                                             value={input.skills}
                                             onChange={changeEventHandler}
-                                            className="w-full"
+                                            className="w-full bg-white dark:bg-[#2a1f3d] dark:text-gray-200"
                                             placeholder="Enter your skills"
                                         />
-                                        <p className="text-xs text-gray-400 mt-1">
+                                        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                             *Update your skills separated with commas (e.g. - Javascript, Java)*
                                         </p>
                                     </div>
@@ -182,9 +188,9 @@ const ProfileEdit = () => {
                                             id="resume"
                                             name="resume"
                                             onChange={fileChangeHandler}
-                                            className="w-full"
+                                            className="w-full bg-white dark:bg-[#2a1f3d] dark:text-gray-200"
                                         />
-                                        <p className="text-xs text-gray-400 mt-1">
+                                        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                             *Upload only .pdf file*
                                         </p>
                                     </div>
@@ -192,16 +198,16 @@ const ProfileEdit = () => {
                             </div>
 
                             <div className="flex items-center sm:justify-end gap-2 mt-8">
-                                <Button type="button" onClick={() => navigate(-1)} variant="outline" className="w-full sm:w-1/6 border-gray-400">
+                                <Button type="button" onClick={() => navigate(-1)} variant="outline" className="w-full sm:w-1/6 border-gray-400 dark:border-gray-600 dark:text-gray-300">
                                     Cancel
                                 </Button>
 
                                 {loading ? (
-                                    <Button className="w-full sm:w-1/6 bg-purple-800" disabled={loading}>
+                                    <Button className="w-full sm:w-1/6 bg-purple-800 hover:bg-purple-900 text-white" disabled={loading}>
                                         <Loader2 className="h-4 w-4 animate-spin" /> wait
                                     </Button>
                                 ) : (
-                                    <Button type="submit" className="w-full sm:w-1/6 bg-purple-800 hover:bg-purple-900">
+                                    <Button type="submit" className="w-full sm:w-1/6 bg-purple-800 hover:bg-purple-900 text-white">
                                         Update
                                     </Button>
                                 )}

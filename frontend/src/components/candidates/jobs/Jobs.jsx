@@ -36,7 +36,7 @@ const Jobs = () => {
     setIsFilterVisible(false);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (user && user.role === 'recruiter') {
       navigate('/admin/companies');
     }
@@ -55,24 +55,24 @@ const Jobs = () => {
               <div className="flex flex-col xl:flex-row gap-3">
                 {/* Toggle Button for Filter Card */}
                 <button
-                  className="xl:hidden bg-purple-700 text-white py-2 px-4 rounded-md hover:bg-purple-800 transition"
+                  className="xl:hidden bg-purple-700 text-white dark:bg-purple-800 py-2 px-4 rounded-md hover:bg-purple-800 dark:hover:bg-purple-900 transition"
                   onClick={() => setIsFilterVisible(!isFilterVisible)}
                 >
                   {isFilterVisible ? 'Hide Filters' : 'Filter Jobs'}
                 </button>
 
                 {/* Filter Card */}
-                <div className={`w-full xl:w-[20%] lg:w-1/4 md:w-1/2 h-fit min-h-[800px] bg-white shadow-md rounded-md p-3 transition-all duration-500 transform ${isFilterVisible ? 'translate-x-0' : '-translate-x-full'} xl:translate-x-0 xl:block absolute xl:relative top-0 left-0 bottom-0 z-10 pb-10`}>
+                <div className={`w-full xl:w-[20%] lg:w-1/4 md:w-1/2 h-fit min-h-[800px] bg-white dark:bg-zinc-800 shadow-md dark:shadow-gray-700 rounded-md p-3 transition-all duration-500 transform ${isFilterVisible ? 'translate-x-0' : '-translate-x-full'} xl:translate-x-0 xl:block absolute xl:relative top-0 left-0 bottom-0 z-10 pb-10`}>
                   <div className="flex justify-between items-center">
-                    <h1 className="text-center text-xl font-semibold text-purple-900">Filter Jobs</h1>
+                    <h1 className="text-center text-xl font-semibold text-purple-900 dark:text-purple-300">Filter Jobs</h1>
                     <button
-                      className={`text-xl font-bold text-purple-700 ${!isFilterVisible && 'hidden'}`}
+                      className={`text-xl font-bold text-purple-700 dark:text-purple-300 ${!isFilterVisible && 'hidden'}`}
                       onClick={() => setIsFilterVisible(false)}
                     >
                       <X />
                     </button>
                   </div>
-                  <div className="w-full h-[1px] bg-purple-300 mb-3"></div>
+                  <div className="w-full h-[1px] bg-purple-300 dark:bg-purple-700 mb-3"></div>
 
                   <div className="h-[85vh] overflow-y-auto jobsScrollBar">
                     <FilterCard
@@ -85,7 +85,7 @@ const Jobs = () => {
                     <Button variant='outline' onClick={() => setIsFilterVisible(!isFilterVisible)}>
                       Cancel
                     </Button>
-                    <Button className="bg-purple-700 text-white py-2 px-4 rounded-md hover:bg-purple-800 transition" onClick={() => handleApplyFilters({})} >
+                    <Button className="bg-purple-700 text-white dark:bg-purple-800 dark:hover:bg-purple-900 py-2 px-4 rounded-md hover:bg-purple-800 transition" onClick={() => handleApplyFilters({})} >
                       Save Filters
                     </Button>
                   </div>
@@ -102,7 +102,7 @@ const Jobs = () => {
                 {/* Job Listings */}
                 {filterJobs.length <= 0 ? (
                   <div className="flex flex-1 items-center justify-center text-xl font-semibold">
-                    <h1 className="p-3 rounded-lg border-4 border-purple-800 opacity-60 bg-purple-100 text-purple-900">
+                    <h1 className="p-3 rounded-lg border-4 border-purple-800 opacity-60 bg-purple-100 dark:bg-gray-800 dark:border-purple-300 text-purple-900 dark:text-purple-300">
                       No Jobs Found
                     </h1>
                   </div>
@@ -122,11 +122,11 @@ const Jobs = () => {
           </section>
         ) : (
           <section className="flex-1 flex items-center justify-center">
-            <h1 className="text-center text-base font-medium text-muted-foreground sm:text-xl min-h-52 my-32">
+            <h1 className="text-center text-base font-medium text-muted-foreground dark:text-gray-300 sm:text-xl min-h-52 my-32">
               Please{' '}
               <Link
                 to="/login"
-                className="text-purple-800 hover:text-purple-950 hover:underline"
+                className="text-purple-800 dark:text-purple-400 hover:text-purple-950 dark:hover:text-purple-200 hover:underline"
               >
                 Login
               </Link>{' '}

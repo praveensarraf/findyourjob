@@ -76,10 +76,6 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
 }
 
-.footer-wave-path {
-  fill: #F4E8FF;
-}
-
 
 input[type="range"] {
   -webkit-appearance: none;

@@ -14,17 +14,16 @@ import { Button } from '../../ui/button'
 import { setCompanies } from '../../../redux/companySlice'
 
 const CompaniesTable = () => {
-
     const { companies, searchCompanyByText } = useSelector(store => store.company);
     const [filterCompany, setFilterCompany] = useState(companies);
 
     useEffect(() => {
         const filteredCompany = companies.length >= 0 && companies.filter((company) => {
-            if (!searchCompanyByText) {
-                return true
-            }
+            if (!searchCompanyByText) return true;
 
-            const filterText = company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase()) || company?.location?.toLowerCase().includes(searchCompanyByText.toLowerCase());
+            const filterText =
+                company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase()) ||
+                company?.location?.toLowerCase().includes(searchCompanyByText.toLowerCase());
             return filterText;
         });
 
@@ -58,88 +57,123 @@ const CompaniesTable = () => {
 
     return (
         <>
-            <div className='overflow-x-auto appliedJobsTableScrollbar'>
+            <div className="overflow-x-auto appliedJobsTableScrollbar bg-white dark:bg-zinc-900 rounded-lg shadow-md p-2">
                 <Table>
-                    <TableCaption className='pb-5 md:pb-2'>A list of your registered Companies</TableCaption>
+                    <TableCaption className="pb-5 md:pb-2 text-gray-700 dark:text-gray-400">
+                        A list of your registered Companies
+                    </TableCaption>
+
                     <TableHeader>
-                        <TableRow className='hover:bg-transparent'>
-                            <TableHead>Logo</TableHead>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Location</TableHead>
-                            <TableHead>Registered Date</TableHead>
-                            <TableHead className='text-right'>Action</TableHead>
+                        <TableRow className="hover:bg-transparent">
+                            <TableHead className="text-gray-700 dark:text-gray-300">Logo</TableHead>
+                            <TableHead className="text-gray-700 dark:text-gray-300">Name</TableHead>
+                            <TableHead className="text-gray-700 dark:text-gray-300">Location</TableHead>
+                            <TableHead className="text-gray-700 dark:text-gray-300">Registered Date</TableHead>
+                            <TableHead className="text-right text-gray-700 dark:text-gray-300">Action</TableHead>
                         </TableRow>
                     </TableHeader>
 
                     <TableBody>
-                        {
-                            filterCompany?.map((company) => (
-                                <TableRow key={company._id}>
-                                    <TableCell>
-                                        <Avatar>
-                                            <AvatarImage src={company?.logo ? company?.logo : commonCompanyLogo} alt={`Logo of ${company?.name.split(' ')[0]}`} />
-                                        </Avatar>
-                                    </TableCell>
-                                    <TableCell className='font-semibold'>{company?.name}</TableCell>
-                                    <TableCell>{company?.location}</TableCell>
-                                    <TableCell>{new Date(company?.createdAt).toLocaleDateString('en-IN')}</TableCell>
-                                    <TableCell className='text-right'>
-                                        <Popover>
-                                            <PopoverTrigger>
-                                                <MoreHorizontal className='cursor-pointer' />
-                                            </PopoverTrigger>
-                                            <PopoverContent className='w-fit p-0'>
-                                                <div className='flex flex-col justify-center p-1'>
-                                                    <div onClick={() => navigate(`/admin/companies/${company._id}`)} className='flex gap-2 items-center justify-center w-full cursor-pointer py-1 px-4 hover:bg-gray-100 rounded'>
-                                                        <Edit2 className='w-4' />
-                                                        <span className='text-base'>Edit</span>
-                                                    </div>
-
-                                                    <div className=' h-[1px] bg-gray-400 my-1'></div>
-
-                                                    <div>
-                                                        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                                                            <DialogTrigger asChild>
-                                                                <div className='flex gap-2 items-center justify-center w-full cursor-pointer text-red-600 py-1 px-4 hover:bg-gray-100 rounded'>
-                                                                    <Trash2 className='w-4' />
-                                                                    <span className='text-base'>Delete</span>
-                                                                </div>
-                                                            </DialogTrigger>
-
-                                                            <DialogContent className="md:max-w-xl rounded-lg" onInteractOutside={(e) => e.preventDefault()} aria-describedby=''>
-                                                                <DialogHeader>
-                                                                    <DialogTitle className='text-center text-xl text-red-700 font-bold mx-5'>Delete - {company?.name}</DialogTitle>
-                                                                </DialogHeader>
-
-                                                                <h1 className='text-lg font-medium text-center my-3'>Are you sure you want to delete this company?</h1>
-
-                                                                <DialogFooter>
-                                                                    <div className="flex flex-col md:flex-row items-center md:justify-end gap-2 w-full">
-                                                                        <DialogClose asChild>
-                                                                            <Button type='button' variant='outline' className='border-gray-400 w-full md:w-1/6 order-last md:order-first'>Cancel</Button>
-                                                                        </DialogClose>
-
-                                                                        <Button onClick={() => deleteCompanyHandler(company._id)} className='bg-red-600 hover:bg-red-700 w-full md:w-1/6' disabled={loading}>
-                                                                            {loading ? (
-                                                                                <div className='flex items-center justify-center gap-1'>
-                                                                                    <span className='w-4 h-4 animate-spin'><Loader2 /></span>
-                                                                                    <span>Wait</span>
-                                                                                </div>
-                                                                            ) : 'Delete'}
-                                                                        </Button>
-                                                                    </div>
-                                                                </DialogFooter>
-                                                            </DialogContent>
-                                                        </Dialog>
-                                                    </div>
+                        {filterCompany?.map((company) => (
+                            <TableRow
+                                key={company._id}
+                                className="hover:bg-gray-50 dark:hover:bg-gray-950 transition-colors"
+                            >
+                                <TableCell>
+                                    <Avatar>
+                                        <AvatarImage
+                                            src={company?.logo ? company?.logo : commonCompanyLogo}
+                                            alt={`Logo of ${company?.name.split(' ')[0]}`}
+                                        />
+                                    </Avatar>
+                                </TableCell>
+                                <TableCell className="font-semibold dark:text-white">
+                                    {company?.name}
+                                </TableCell>
+                                <TableCell className="dark:text-white">{company?.location}</TableCell>
+                                <TableCell className="dark:text-white">
+                                    {new Date(company?.createdAt).toLocaleDateString('en-IN')}
+                                </TableCell>
+                                <TableCell className="text-right">
+                                    <Popover>
+                                        <PopoverTrigger>
+                                            <MoreHorizontal className="cursor-pointer dark:text-white" />
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-fit p-0 bg-white dark:bg-gray-950 dark:text-gray-200 dark:border-white rounded-md shadow-md">
+                                            <div className="flex flex-col justify-center p-1">
+                                                <div
+                                                    onClick={() => navigate(`/admin/companies/${company._id}`)}
+                                                    className="flex gap-2 items-center justify-center w-full cursor-pointer py-1 px-4 hover:bg-gray-100 dark:hover:bg-zinc-700 rounded"
+                                                >
+                                                    <Edit2 className="w-4" />
+                                                    <span className="text-base">Edit</span>
                                                 </div>
-                                            </PopoverContent>
-                                        </Popover>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                            )
-                        }
+
+                                                <div className="h-[1px] bg-gray-400 dark:bg-gray-100 my-1"></div>
+
+                                                <div>
+                                                    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                                                        <DialogTrigger asChild>
+                                                            <div className="flex gap-2 items-center justify-center w-full cursor-pointer text-red-600 dark:text-red-500 py-1 px-4 hover:bg-gray-100 dark:hover:bg-zinc-700 rounded">
+                                                                <Trash2 className="w-4" />
+                                                                <span className="text-base">Delete</span>
+                                                            </div>
+                                                        </DialogTrigger>
+
+                                                        <DialogContent
+                                                            className="md:max-w-xl rounded-lg bg-white dark:bg-zinc-900 dark:text-slate-200"
+                                                            onInteractOutside={(e) => e.preventDefault()}
+                                                            aria-describedby=""
+                                                        >
+                                                            <DialogHeader>
+                                                                <DialogTitle className="text-center text-xl text-red-700 dark:text-red-500 font-bold mx-5">
+                                                                    Delete - {company?.name}
+                                                                </DialogTitle>
+                                                            </DialogHeader>
+
+                                                            <h1 className="text-lg font-medium text-center my-3">
+                                                                Are you sure you want to delete this company?
+                                                            </h1>
+
+                                                            <DialogFooter>
+                                                                <div className="flex flex-col md:flex-row items-center md:justify-end gap-2 w-full">
+                                                                    <DialogClose asChild>
+                                                                        <Button
+                                                                            type="button"
+                                                                            variant="outline"
+                                                                            className="border-gray-400 dark:border-slate-600 w-full md:w-1/6 order-last md:order-first"
+                                                                        >
+                                                                            Cancel
+                                                                        </Button>
+                                                                    </DialogClose>
+
+                                                                    <Button
+                                                                        onClick={() => deleteCompanyHandler(company._id)}
+                                                                        className="bg-red-600 dark:text-white hover:bg-red-700 w-full md:w-1/6"
+                                                                        disabled={loading}
+                                                                    >
+                                                                        {loading ? (
+                                                                            <div className="flex items-center justify-center gap-1">
+                                                                                <span className="w-4 h-4 animate-spin">
+                                                                                    <Loader2 />
+                                                                                </span>
+                                                                                <span>Wait</span>
+                                                                            </div>
+                                                                        ) : (
+                                                                            'Delete'
+                                                                        )}
+                                                                    </Button>
+                                                                </div>
+                                                            </DialogFooter>
+                                                        </DialogContent>
+                                                    </Dialog>
+                                                </div>
+                                            </div>
+                                        </PopoverContent>
+                                    </Popover>
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </div>

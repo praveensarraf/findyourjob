@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../../ui/dialog';
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle
+} from '../../ui/dialog';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { toast } from 'sonner';
@@ -52,31 +60,35 @@ const UpdateProfilePhotoDialog = ({ open, setOpen }) => {
         }
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            submitHandler(e);
-        }
-    };
-
     return (
         <Dialog open={open} onOpenChange={() => setOpen(false)}>
-            <DialogContent className="w-full sm:max-w-lg md:max-w-xl rounded-lg" onInteractOutside={(e) => e.preventDefault()}>
+            <DialogContent
+                className="w-full sm:max-w-lg md:max-w-xl rounded-lg bg-white dark:bg-gray-950 dark:border-purple-800 text-gray-900 dark:text-gray-100"
+                onInteractOutside={(e) => e.preventDefault()}
+            >
                 <DialogHeader>
-                    <DialogTitle className="text-lg sm:text-xl font-semibold text-purple-900">
+                    <DialogTitle className="text-lg sm:text-xl font-semibold text-purple-900 dark:text-purple-400">
                         Update Profile Photo
                     </DialogTitle>
-                    <DialogDescription className="text-sm sm:text-base">
+                    <DialogDescription className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
                         Make changes to your profile photo. Click 'Update' button when you're done.
                     </DialogDescription>
                 </DialogHeader>
 
                 <form
                     onSubmit={submitHandler}
-                    onKeyDown={(e) => { if (e.key === 'Enter') { submitHandler(e); } }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            submitHandler(e);
+                        }
+                    }}
                     className="space-y-4 mt-5"
                 >
                     <div className="flex flex-col gap-0">
-                        <Label htmlFor="profilePhoto" className="font-medium text-sm sm:text-base">
+                        <Label
+                            htmlFor="profilePhoto"
+                            className="font-medium text-sm sm:text-base text-gray-800 dark:text-gray-200"
+                        >
                             Profile Photo:
                         </Label>
                         <div>
@@ -86,9 +98,9 @@ const UpdateProfilePhotoDialog = ({ open, setOpen }) => {
                                 id="profilePhoto"
                                 name="profilePhoto"
                                 onChange={handleFileChange}
-                                className="w-full"
+                                className="w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600"
                             />
-                            <p className="text-xs text-gray-400 mt-1">
+                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                 *Upload only .jpg/.jpeg/.png file*
                             </p>
                         </div>
@@ -99,20 +111,21 @@ const UpdateProfilePhotoDialog = ({ open, setOpen }) => {
                             <Button
                                 type="button"
                                 variant="outline"
-                                className="w-full sm:w-auto border-gray-400 order-last sm:order-first">
+                                className="w-full sm:w-auto border-gray-400 dark:border-gray-600 text-gray-800 dark:text-gray-200"
+                            >
                                 Cancel
                             </Button>
                         </DialogClose>
 
                         {loading ? (
-                            <Button
-                                className="w-full sm:w-auto bg-purple-800" disabled={loading}>
+                            <Button className="w-full sm:w-auto bg-purple-800 hover:bg-purple-900 text-white dark:bg-purple-700 dark:hover:bg-purple-800" disabled={loading}>
                                 <Loader2 className="h-4 w-4 animate-spin" /> wait
                             </Button>
                         ) : (
                             <Button
                                 type="submit"
-                                className="w-full sm:w-auto bg-purple-800 hover:bg-purple-900">
+                                className="w-full sm:w-auto bg-purple-800 hover:bg-purple-900 text-white dark:bg-purple-700 dark:hover:bg-purple-800"
+                            >
                                 Update
                             </Button>
                         )}

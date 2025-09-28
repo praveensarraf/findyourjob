@@ -34,7 +34,7 @@ const SavedJobs = () => {
             }
         };
 
-        getBookmarkedJobs();;
+        getBookmarkedJobs();
     }, []);
 
     const handleRemoveBookmark = (jobId) => {
@@ -59,19 +59,19 @@ const SavedJobs = () => {
 
             <section className="flex-1">
                 <div className="max-w-7xl mx-auto my-10 px-4 sm:px-6">
-                    <h1 className="mb-4 text-lg sm:text-2xl font-semibold text-purple-800 text-center underline underline-offset-8">
+                    <h1 className="mb-4 text-lg sm:text-2xl font-semibold text-purple-800 dark:text-purple-300 text-center underline underline-offset-8">
                         Your Bookmarked Jobs ({bookmarkedJobs.length})
                     </h1>
 
                     {loading ? (
                         <div className="flex items-center justify-center text-xl font-semibold min-h-40 my-10">
-                            <h1 className="p-3 rounded-lg border-2 border-purple-800 opacity-60 bg-purple-100 text-purple-900 text-sm sm:text-xl text-center">
+                            <h1 className="p-3 rounded-lg border-2 border-purple-800 dark:border-purple-300 opacity-60 bg-purple-100 dark:bg-gray-800 text-purple-900 dark:text-purple-300 text-sm sm:text-xl text-center">
                                 Loading bookmarks...
                             </h1>
                         </div>
                     ) : bookmarkedJobs.length === 0 ? (
                         <div className="flex items-center justify-center text-xl font-semibold min-h-40 my-10">
-                            <h1 className="p-3 rounded-lg border-2 border-purple-800 opacity-60 bg-purple-100 text-purple-900 text-sm sm:text-xl text-center">
+                            <h1 className="p-3 rounded-lg border-2 border-purple-800 dark:border-purple-300 opacity-60 bg-purple-100 dark:bg-gray-800 text-purple-900 dark:text-purple-300 text-sm sm:text-xl text-center">
                                 You haven't bookmarked any jobs yet!
                             </h1>
                         </div>

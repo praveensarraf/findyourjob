@@ -49,21 +49,23 @@ const CategoryCarousel = () => {
     };
 
     return (
-        <div className='flex items-center justify-center w-full'>
+        <div className="flex items-center justify-center w-full dark:bg-zinc-900">
             <Carousel className="lg:w-1/2 w-2/3">
-                <CarouselPrevious />
-                <CarouselContent className=''>
-                    {
-                        category.map((item, index) => (
-                            <CarouselItem key={index} className="basis-auto">
-                                <Button onClick={() => searchJobHandler(item)} variant="outline" className="rounded-full text-purple-900">
-                                    {item}
-                                </Button>
-                            </CarouselItem>
-                        ))
-                    }
+                <CarouselPrevious className="text-purple-800 dark:text-purple-400" />
+                <CarouselContent>
+                    {category.map((item, index) => (
+                        <CarouselItem key={index} className="basis-auto">
+                            <Button
+                                onClick={() => searchJobHandler(item)}
+                                variant="outline"
+                                className="rounded-full text-purple-900 dark:text-purple-200 border border-purple-800 dark:border-purple-500 hover:bg-purple-100 dark:hover:bg-purple-700"
+                            >
+                                {item}
+                            </Button>
+                        </CarouselItem>
+                    ))}
                 </CarouselContent>
-                <CarouselNext />
+                <CarouselNext className="text-purple-800 dark:text-purple-400" />
             </Carousel>
         </div>
     );

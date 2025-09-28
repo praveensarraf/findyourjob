@@ -2,6 +2,8 @@
 
 **Find Your Job** is a dynamic and fully-featured job portal application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It is styled with **Tailwind CSS** and utilizes **ShadCN-UI** for modern UI components. This platform is designed for **job seekers** and **job recruiters**, providing a seamless experience for job searching, application management, and recruitment processes. It includes an **admin panel** for recruiters to manage job postings and applicants effectively.  
 
+This version includes a **theme toggle feature** available on all pages for both job seekers and recruiters, allowing users to switch between **light** and **dark** modes.
+
 ## Deployment Link
 
 [Find Your Job](https://findyourjobb.netlify.app)
@@ -28,6 +30,11 @@
   - Update profile details, profile photo, and resume.
   - Manage job applications and bookmarks.
 
+- **Theme Toggle**:
+  - Switch between light and dark themes on all pages.
+  - Default theme follows the system preference.
+  - Persisted theme choice using `localStorage`.
+
 ---
 
 ### Job Recruiter Features (Admin Panel)
@@ -52,6 +59,11 @@
   - Update recruiter profile information, profile photo, and company details or company logo. 
   - Manage registered companies and job postings.
 
+- **Theme Toggle**:
+  - Switch between light and dark themes on all admin pages.
+  - Default theme follows the system preference.
+  - Persisted theme choice using `localStorage`.
+
 ---
 
 ## Tech Stack
@@ -64,6 +76,7 @@
 - **Redux**: State management for user sessions and app-wide data.
 - **Axios**: Handles API requests.
 - **Sonner**: Toast notifications for user feedback.
+- **Theme Toggle**: Custom light/dark theme switcher using Tailwind dark mode and React state.
 
 ### Backend
 - **Node.js**: JavaScript runtime for building the server-side application.
@@ -75,7 +88,7 @@
 - **Multer**: Middleware for handling file uploads (e.g., profile photos, resumes).
 
 ### Deployment
-- **Frontend**: Hosted on Render.
+- **Frontend**: Hosted on Netlify.
 - **Backend**: Hosted on Render with MongoDB Atlas for database management.
 
 ---
